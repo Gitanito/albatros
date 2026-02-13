@@ -58,15 +58,38 @@
 <body class="overflow-x-hidden min-h-screen flex flex-col">
 
     <!-- Navigation -->
-    <nav class="absolute w-full z-50 py-6">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6">
         <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-2 text-amber-200 font-serif text-xl tracking-wider hover:text-white transition-colors">
-                <i data-lucide="feather" class="w-6 h-6 animate-float"></i>
+            <a href="index.html" class="flex items-center gap-2 text-amber-200 font-serif text-xl md:text-2xl tracking-wider cursor-pointer">
+                <i data-lucide="feather" class="w-6 h-6 md:w-8 md:h-8 animate-float"></i>
                 <span>Albatros der Weise</span>
             </a>
-            <a href="index.html" class="text-slate-400 hover:text-amber-200 text-sm uppercase tracking-widest flex items-center gap-2 transition-colors">
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Zurück
-            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="index.html#about" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Über mich</a>
+                <a href="index.html#services" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Angebote</a>
+                <!-- Active State for Freebies -->
+                <a href="#" class="text-amber-400 font-bold border-b border-amber-500 transition-colors uppercase text-sm tracking-widest">Freebies</a>
+                <a href="index.html#offer" class="text-slate-300 hover:text-amber-400 font-bold border border-transparent hover:border-amber-500/50 px-4 py-2 rounded-full hover:bg-amber-500/10 transition-colors uppercase text-sm tracking-widest">Spezial-Angebot</a>
+                <a href="index.html#oracle" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Orakel</a>
+                <a href="index.html#contact" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Kontakt</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-amber-200" aria-label="Menü öffnen">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 p-4 flex flex-col gap-4 shadow-xl">
+            <a href="index.html#about" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Über mich</a>
+            <a href="index.html#services" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Angebote</a>
+            <a href="#" class="mobile-link text-amber-400 font-bold block py-2 text-center uppercase tracking-widest">Freebies</a>
+            <a href="index.html#offer" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Spezial-Angebot</a>
+            <a href="index.html#oracle" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Orakel</a>
+            <a href="index.html#contact" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Kontakt</a>
         </div>
     </nav>
 
@@ -133,6 +156,36 @@
         lucide.createIcons();
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // Navigation Scroll Effect (added for consistency)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // Mobile Menu Logic (added for consistency)
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+
         // ---------------------------------------------------------
         // 1. DATA ARRAY - Hier deine MP3s eintragen
         // ---------------------------------------------------------
@@ -142,7 +195,6 @@
                 title: "Morgen-Meditation: Erdung",
                 description: "Starte deinen Tag verwurzelt und kraftvoll. Eine 10-minütige geführte Reise zu deiner inneren Mitte.",
                 thumbnail: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=600&auto=format&fit=crop",
-                // Platzhalter-Audio (ersetze dies mit deinem Link zur .mp3 Datei)
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" 
             },
             {
