@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="de-DE">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vielen Dank | Albatros der Weise</title>
+    <title>Vielen Dank | Albatros Frei</title>
     <meta name="robots" content="noindex"> <!-- Danke-Seiten sollten nicht in Google auftauchen -->
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -19,35 +20,74 @@
             background-color: #0f172a;
             color: white;
         }
-        h1, h2, .font-serif { font-family: 'Playfair Display', serif; }
+
+        h1,
+        h2,
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
-        .animate-twinkle { animation: twinkle infinite; }
-        
+
+        .animate-twinkle {
+            animation: twinkle infinite;
+        }
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .animate-fadeInUp { animation: fadeInUp 1s ease-out forwards; }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
     </style>
 </head>
+
 <body class="overflow-x-hidden min-h-screen flex flex-col">
 
     <!-- Simple Navigation (Just Logo) -->
     <nav class="absolute w-full z-50 py-6">
         <div class="max-w-6xl mx-auto px-4 flex justify-center md:justify-start">
-            <a href="index.html" class="flex items-center gap-2 text-amber-200 font-serif text-xl tracking-wider hover:text-white transition-colors">
+            <a href="index.html"
+                class="flex items-center gap-2 text-amber-200 font-serif text-xl tracking-wider hover:text-white transition-colors">
                 <i data-lucide="feather" class="w-6 h-6 animate-float"></i>
-                <span>Albatros der Weise</span>
+                <span>Albatros Frei</span>
             </a>
         </div>
     </nav>
@@ -57,29 +97,34 @@
         <!-- Backgrounds -->
         <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 z-0"></div>
         <div id="stars-container" class="fixed inset-0 z-0 overflow-hidden pointer-events-none"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
 
         <div class="relative z-10 max-w-2xl w-full text-center">
-            <div class="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-800/50 border border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.2)] animate-fadeInUp">
+            <div
+                class="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-800/50 border border-amber-500/30 shadow-[0_0_30px_rgba(245,158,11,0.2)] animate-fadeInUp">
                 <i data-lucide="check" class="w-10 h-10 text-amber-400"></i>
             </div>
-            
+
             <h1 class="text-4xl md:text-6xl font-serif text-white mb-6 animate-fadeInUp" style="animation-delay: 0.1s;">
                 Deine Nachricht ist<br>
                 <span class="text-amber-200">im Universum angekommen.</span>
             </h1>
-            
+
             <p class="text-lg text-slate-300 mb-10 leading-relaxed animate-fadeInUp" style="animation-delay: 0.2s;">
-                Vielen Dank für dein Vertrauen. Ich habe deine Anfrage erhalten und werde mich energetisch damit verbinden. Du erhältst innerhalb von 24 Stunden eine Antwort per E-Mail.
+                Vielen Dank für dein Vertrauen. Ich habe deine Anfrage erhalten und werde mich energetisch damit
+                verbinden. Du erhältst innerhalb von 24 Stunden eine Antwort per E-Mail.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style="animation-delay: 0.3s;">
-                <a href="index.html" class="group px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-lg font-bold shadow-lg hover:shadow-amber-500/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                <a href="index.html"
+                    class="group px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-lg font-bold shadow-lg hover:shadow-amber-500/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
                     <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
                     Zurück zur Startseite
                 </a>
             </div>
-            
+
             <p class="mt-12 text-slate-500 text-sm italic animate-fadeInUp" style="animation-delay: 0.4s;">
                 "Nichts geschieht ohne Grund. Du bist genau dort, wo du sein sollst."
             </p>
@@ -112,4 +157,5 @@
         }
     </script>
 </body>
+
 </html>
