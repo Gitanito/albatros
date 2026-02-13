@@ -1,649 +1,866 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Star, Eye, Heart, Feather, Menu, X, ArrowRight, Sun, MapPin, Phone, Mail, Sparkles, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="de-DE" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Albatros der Weise | Spirituelle Beratung, Tarot & Lebenshilfe</title>
+    <meta name="description" content="Albatros der Weise bietet professionelle spirituelle Beratung, Tarot nach Hajo Banzhaf, Remote Viewing und einfühlsame Lebenshilfe. Jetzt online Legung buchen!">
+    <meta name="keywords" content="Tarot, Kartenlegen, Spirituelle Beratung, Lebenshilfe, Remote Viewing, Liebesorakel, Wahrsagen, Hajo Banzhaf, Zukunftsdeutung, Online Beratung">
+    <meta name="author" content="Albatros der Weise">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.albatros-weise.de/"> <!-- Placeholder URL -->
 
-const StarryBackground = () => {
-  const [stars, setStars] = useState([]);
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.albatros-weise.de/">
+    <meta property="og:title" content="Albatros der Weise | Spirituelle Beratung & Tarot">
+    <meta property="og:description" content="Blicke hinter den Schleier. Professionelle Tarot-Legungen, Remote Viewing und spirituelle Begleitung für deine Lebensfragen.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1534067783865-9abd03095a12?q=80&w=1000&auto=format&fit=crop">
 
-  useEffect(() => {
-    const generateStars = () => {
-      const newStars = [];
-      for (let i = 0; i < 50; i++) {
-        newStars.push({
-          id: i,
-          left: Math.random() * 100 + '%',
-          top: Math.random() * 100 + '%',
-          size: Math.random() * 3 + 1 + 'px',
-          animationDuration: Math.random() * 3 + 2 + 's',
-          animationDelay: Math.random() * 2 + 's',
-        });
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Albatros der Weise | Spirituelle Beratung & Tarot">
+    <meta property="twitter:description" content="Blicke hinter den Schleier. Professionelle Tarot-Legungen und Lebenshilfe.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1534067783865-9abd03095a12?q=80&w=1000&auto=format&fit=crop">
+
+    <!-- Structured Data (JSON-LD) for Local Business/Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Albatros der Weise",
+      "image": "https://images.unsplash.com/photo-1534067783865-9abd03095a12",
+      "description": "Professionelle spirituelle Beratung, Tarot-Legungen, Remote Viewing und Lebenshilfe in schwierigen Situationen.",
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "DE",
+        "addressRegion": "Online"
+      },
+      "telephone": "+49123456789",
+      "email": "kontakt@albatros-weise.de",
+      "url": "https://www.albatros-weise.de",
+      "offers": {
+        "@type": "Offer",
+        "price": "20.00",
+        "priceCurrency": "EUR",
+        "name": "Einführungsangebot Tarot Legung",
+        "availability": "https://schema.org/InStock"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Spirituelle Dienstleistungen",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tarot & Kartenlegen"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Remote Viewing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Spirituelle Lebenshilfe"
+            }
+          }
+        ]
       }
-      setStars(newStars);
-    };
-    generateStars();
-  }, []);
-
-  return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className="absolute bg-white rounded-full opacity-70 animate-twinkle"
-          style={{
-            left: star.left,
-            top: star.top,
-            width: star.size,
-            height: star.size,
-            animationDuration: star.animationDuration,
-            animationDelay: star.animationDelay,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: 'Über mich', href: '#about' },
-    { name: 'Angebote', href: '#services' },
-    { name: 'Spezial-Angebot', href: '#offer', highlight: true },
-    { name: 'Orakel', href: '#oracle' },
-    { name: 'Kontakt', href: '#contact' },
-  ];
-
-  return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/90 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-6'}`}>
-      <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center gap-2 text-amber-200 font-serif text-xl md:text-2xl tracking-wider cursor-pointer">
-          <Feather className="w-6 h-6 md:w-8 md:h-8 animate-float" />
-          <span>Albatros der Weise</span>
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8 items-center">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              className={`transition-colors uppercase text-sm tracking-widest ${
-                link.highlight 
-                  ? 'text-amber-400 font-bold border border-amber-500/50 px-4 py-2 rounded-full hover:bg-amber-500/10' 
-                  : 'text-slate-300 hover:text-amber-300'
-              }`}
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-
-        {/* Mobile Toggle */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-amber-200">
-          {isOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 p-4 flex flex-col gap-4 shadow-xl">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              onClick={() => setIsOpen(false)}
-              className={`block py-2 text-center uppercase tracking-widest ${
-                link.highlight ? 'text-amber-400 font-bold' : 'text-slate-300 hover:text-amber-300'
-              }`}
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
-  );
-};
-
-const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 z-0" />
-      <StarryBackground />
-      
-      {/* Decorative Moon */}
-      <div className="absolute top-1/4 right-10 md:right-1/4 w-32 h-32 md:w-64 md:h-64 rounded-full bg-amber-100/5 blur-[60px] animate-pulse-slow pointer-events-none" />
-
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="mb-6 inline-block">
-          <span className="py-1 px-3 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-sm tracking-widest uppercase backdrop-blur-sm">
-            Spiritueller Ratgeber
-          </span>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 mb-6 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)] animate-fadeInUp">
-          Blicke hinter den Schleier
-        </h1>
-        <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto animate-fadeInUp delay-200">
-          Ich bin Albatros. Ich fliege hoch über den Stürmen des Lebens, um dir Klarheit, Weitsicht und spirituelle Führung zu schenken.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-300">
-          <a href="#offer" className="px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-full font-medium hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-            Zum Spezial-Angebot <Sparkles size={18} />
-          </a>
-          <a href="#services" className="px-8 py-4 border border-slate-600 text-slate-300 rounded-full font-medium hover:bg-slate-800 hover:border-slate-500 transition-all">
-            Meine Gaben entdecken
-          </a>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
-        <span className="block w-[1px] h-16 bg-gradient-to-b from-transparent via-slate-500 to-transparent"></span>
-      </div>
-    </section>
-  );
-};
-
-const ServiceCard = ({ icon: Icon, title, description, color, details }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className={`group relative p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm transition-all duration-500 overflow-hidden ${isOpen ? 'ring-1 ring-amber-500/50 bg-slate-800/80' : 'hover:bg-slate-800/60 hover:transform hover:-translate-y-2'}`}>
-      <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-10 blur-2xl transition-opacity ${color} ${isOpen ? 'opacity-20' : 'group-hover:opacity-20'}`} />
-      
-      <div className="relative z-10">
-        <div className="flex justify-between items-start">
-            <div className="w-14 h-14 rounded-xl bg-slate-900/80 flex items-center justify-center mb-6 border border-slate-700 group-hover:border-amber-500/50 transition-colors shadow-lg">
-                <Icon className="w-7 h-7 text-amber-200" />
-            </div>
-            {isOpen && (
-                <button onClick={(e) => { e.stopPropagation(); setIsOpen(false); }} className="text-slate-500 hover:text-amber-400 transition-colors">
-                    <X size={24} />
-                </button>
-            )}
-        </div>
-        
-        <h3 className="text-2xl font-serif text-slate-100 mb-3 group-hover:text-amber-200 transition-colors">{title}</h3>
-        <p className="text-slate-400 leading-relaxed mb-4">{description}</p>
-        
-        {/* Expandable Details Section */}
-        <div className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0'}`}>
-            <div className="overflow-hidden">
-                <div className="pt-4 border-t border-slate-700/50">
-                    <h4 className="text-amber-400 font-serif mb-3 text-sm uppercase tracking-widest">Leistungsumfang</h4>
-                    <ul className="space-y-3">
-                        {details.map((detail, idx) => (
-                            <li key={idx} className="flex items-start gap-3 text-slate-300 text-sm leading-relaxed">
-                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
-                                <span>{detail}</span>
-                            </li>
-                        ))}
-                    </ul>
-                    <a href="#offer" className="inline-block mt-6 text-xs font-bold text-amber-500 hover:text-amber-300 border-b border-amber-500/30 pb-0.5 transition-colors uppercase tracking-wider">
-                        Jetzt anfragen
-                    </a>
-                </div>
-            </div>
-        </div>
-      </div>
-      
-      {!isOpen && (
-        <button 
-            onClick={() => setIsOpen(true)}
-            className="mt-4 pt-4 border-t border-slate-700/50 w-full flex items-center text-amber-400 text-sm font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transform translate-y-0 md:translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-        >
-        Details ansehen <ChevronDown size={14} className="ml-2 animate-bounce" />
-        </button>
-      )}
-    </div>
-  );
-};
-
-const Services = () => {
-  const services = [
-    {
-      icon: Moon,
-      title: "Tarot & Kartenlegen",
-      description: "Die Karten spiegeln deine Seele. Ich deute die Symbole des Rider-Waite Tarot nach der bewährten Methode von Hajo Banzhaf, um Vergangenes zu verstehen und Zukünftiges zu gestalten.",
-      color: "bg-purple-500",
-      details: [
-        "Beziehungsspiel: Was denkt und fühlt dein Partner wirklich? Wo steht ihr?",
-        "Das Entscheidungsspiel: Klarheit, wenn du an einer Weggabelung stehst (Job, Liebe, Umzug).",
-        "Der blinde Fleck: Erkenne unbewusste Muster, die dich blockieren.",
-        "Jahreskreis: Ein umfassender Blick auf deine Lernaufgaben der nächsten 12 Monate."
-      ]
-    },
-    {
-      icon: Eye,
-      title: "Remote Viewing",
-      description: "Hellsichtige Wahrnehmung über Raum und Zeit. Ich helfe dir, verborgene Informationen zu finden und Situationen aus einer höheren Perspektive zu betrachten.",
-      color: "bg-blue-500",
-      details: [
-        "Coordinate Remote Viewing (CRV): Protokollierte Fernwahrnehmung für präzise Daten.",
-        "Lost Objects: Energetische Ortung von verlorenen Gegenständen.",
-        "Standort-Analyse: Energetische Bewertung von Immobilien oder Geschäftsorten vor dem Kauf.",
-        "Zukunfts-Potenziale: Abfragen von wahrscheinlichen Zeitlinien bei wichtigen Projekten."
-      ]
-    },
-    {
-      icon: Heart,
-      title: "Liebesorakel & Partnerberatung",
-      description: "Seelenpartner oder karmische Lernaufgabe? Wir blicken tief in die energetischen Verbindungen zwischen dir und deinem Herzensmenschen.",
-      color: "bg-pink-500",
-      details: [
-        "Dualseelen-Check: Handelt es sich um eine karmische Verstrickung oder wahre Seelenliebe?",
-        "Herz-Magnetismus: Blockaden lösen, um den richtigen Partner anzuziehen.",
-        "Trennungsbegleitung: Spirituelle Unterstützung beim Loslassen und Heilen.",
-        "Paar-Analyse: Die gemeinsamen Lernaufgaben und Potenziale verstehen."
-      ]
-    },
-    {
-      icon: Sun,
-      title: "Spirituelle Begleitung",
-      description: "In dunklen Lebensphasen bin ich dein Lichtträger. Gemeinsam aktivieren wir deine Selbstheilungskräfte und finden deinen Seelenpfad wieder.",
-      color: "bg-amber-500",
-      details: [
-        "Schattenarbeit: Integration verdrängter Anteile für mehr innere Ganzheit.",
-        "Chakra-Harmonisierung: Ausgleich des Energieflusses bei Erschöpfung.",
-        "Traumdeutung: Die Botschaften deines Unterbewusstseins entschlüsseln.",
-        "Intuitions-Training: Lerne, deiner eigenen inneren Stimme wieder zu vertrauen."
-      ]
     }
-  ];
+    </script>
 
-  return (
-    <section id="services" className="py-24 bg-slate-900 relative">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif text-amber-100 mb-4">Meine Spirituellen Dienste</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto rounded-full" />
-          <p className="mt-4 text-slate-400">Klicke auf eine Karte, um mehr Details zu erfahren.</p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {services.map((s, index) => (
-            <ServiceCard key={index} {...s} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Custom Fonts & Animations */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
-const SpecialOffer = () => {
-  return (
-    <section id="offer" className="py-24 relative overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950" />
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
-      
-      {/* Glowing orb effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-4 relative z-10">
-        <div className="bg-slate-900/60 backdrop-blur-xl border border-amber-500/30 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(245,158,11,0.15)] flex flex-col md:flex-row">
-          
-          {/* Left Side: The Offer Info */}
-          <div className="p-8 md:p-12 md:w-5/12 bg-gradient-to-br from-slate-900 to-indigo-950 flex flex-col justify-center relative border-b md:border-b-0 md:border-r border-slate-700">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400" />
-            
-            <div className="inline-flex items-center gap-2 text-amber-400 text-sm font-bold uppercase tracking-widest mb-4">
-              <Sparkles size={16} />
-              <span>Limitiertes Angebot</span>
-            </div>
-            
-            <h2 className="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight">
-              Deine Frage.<br/>
-              <span className="text-amber-200">Die Antwort der Karten.</span>
-            </h2>
-            
-            <p className="text-slate-400 mb-8 leading-relaxed">
-              Stelle mir jetzt deine brennendste Frage. Ich verbinde mich mit deinem Energiefeld und lege eine ausführliche 3-Karten-Legung für dich. Antwort innerhalb von 24 Stunden per E-Mail.
-            </p>
-
-            <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50 mb-6">
-               <div className="flex items-end gap-3 mb-2">
-                  <span className="text-slate-500 text-lg line-through decoration-red-500 decoration-2">60,00 €</span>
-                  <span className="text-4xl font-bold text-amber-400">20,00 €</span>
-               </div>
-               <p className="text-xs text-amber-200/70 uppercase tracking-wide">Einführungsangebot</p>
-            </div>
-
-            <ul className="space-y-3 text-sm text-slate-300">
-              <li className="flex items-center gap-3">
-                <CheckCircle size={16} className="text-green-500" /> 100% Diskret & Persönlich
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle size={16} className="text-green-500" /> Foto der Legung inklusive
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle size={16} className="text-green-500" /> Sichere Bezahlung
-              </li>
-            </ul>
-          </div>
-
-          {/* Right Side: Order Form */}
-          <div className="p-8 md:p-12 md:w-7/12 bg-slate-900/40">
-             <form className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                   <div className="space-y-2">
-                      <label className="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Dein Vorname</label>
-                      <input type="text" className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="z.B. Maria" required />
-                   </div>
-                   <div className="space-y-2">
-                      <label className="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Geburtsdatum</label>
-                      <input type="text" className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="TT.MM.JJJJ" />
-                   </div>
-                </div>
-
-                <div className="space-y-2">
-                   <label className="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Deine E-Mail Adresse</label>
-                   <input type="email" className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="Für den Erhalt der Deutung" required />
-                </div>
-
-                <div className="space-y-2">
-                   <label className="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Deine Frage an die Karten</label>
-                   <textarea rows="4" className="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="Was möchtest du wissen? Konzentriere dich auf deine Frage..." required></textarea>
-                </div>
-
-                <button type="button" className="w-full group relative overflow-hidden bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all transform hover:-translate-y-1">
-                   <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                   <span className="flex items-center justify-center gap-2">
-                     Jetzt Legung bestellen (20€) <ArrowRight size={18} />
-                   </span>
-                </button>
-                <p className="text-xs text-center text-slate-500 mt-4">
-                   Mit dem Klick auf den Button wirst du zur sicheren Zahlungsseite weitergeleitet.
-                </p>
-             </form>
-          </div>
-        </div>
-      </div>
-      
-      <style>{`
-        @keyframes shimmer {
-          100% { transform: translateX(100%); }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: white;
         }
-        .group-hover\\:animate-shimmer:hover {
-          animation: shimmer 1.5s infinite;
+
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
         }
-      `}</style>
-    </section>
-  );
-};
 
-const DailyOracle = () => {
-  const [revealed, setRevealed] = useState(false);
-  const [message, setMessage] = useState("");
-
-  const wisdoms = [
-    "Das, was du suchst, sucht auch dich. Sei geduldig.",
-    "Ein alter Zyklus endet heute. Öffne dich für das Neue.",
-    "Vertraue deiner Intuition mehr als deinen Ängsten.",
-    "Die Antwort liegt nicht im Außen, sondern in der Stille.",
-    "Jemand denkt liebevoll an dich. Sende diese Energie zurück.",
-    "Ein Hindernis ist nur eine Umleitung zu deinem wahren Ziel."
-  ];
-
-  const drawCard = () => {
-    if (!revealed) {
-      const randomMsg = wisdoms[Math.floor(Math.random() * wisdoms.length)];
-      setMessage(randomMsg);
-      setRevealed(true);
-    } else {
-      setRevealed(false);
-      setTimeout(() => {
-        setMessage("");
-      }, 500);
-    }
-  };
-
-  return (
-    <section id="oracle" className="py-24 relative overflow-hidden bg-slate-900">
-      <div className="absolute inset-0 bg-indigo-950/30 backdrop-blur-sm" />
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20" />
-      
-      <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-        <h2 className="text-3xl md:text-4xl font-serif text-white mb-2">Das Orakel des Albatros</h2>
-        <p className="text-slate-300 mb-10">Ziehe eine Karte für deine heutige Botschaft.</p>
-
-        <div className="flex justify-center perspective-1000">
-          <div 
-            onClick={drawCard}
-            className={`cursor-pointer w-64 h-96 relative transition-all duration-700 transform-style-3d ${revealed ? 'rotate-y-180' : 'hover:scale-105'}`}
-            style={{ transformStyle: 'preserve-3d' }}
-          >
-            {/* Card Back */}
-            <div className="absolute inset-0 backface-hidden rounded-2xl shadow-[0_0_30px_rgba(124,58,237,0.3)] border-2 border-indigo-400/30 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 flex items-center justify-center overflow-hidden">
-               <div className="absolute inset-2 border border-indigo-400/20 rounded-xl flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-full border border-amber-500/30 flex items-center justify-center animate-spin-slow">
-                    <Star className="text-amber-200 w-12 h-12" />
-                  </div>
-               </div>
-               <span className="text-amber-100 font-serif tracking-widest text-sm absolute bottom-8">TIPPEN ZUM ZIEHEN</span>
-            </div>
-
-            {/* Card Front */}
-            <div 
-              className="absolute inset-0 backface-hidden rounded-2xl shadow-[0_0_40px_rgba(251,191,36,0.2)] bg-gradient-to-br from-amber-100 to-orange-50 flex flex-col items-center justify-center p-6 text-center transform rotate-y-180"
-              style={{ transform: 'rotateY(180deg)', backfaceVisibility: 'hidden' }}
-            >
-               <Feather className="w-12 h-12 text-amber-600 mb-4" />
-               <h3 className="text-amber-900 font-serif text-xl font-bold mb-4">Botschaft der Weisheit</h3>
-               <p className="text-slate-700 italic font-medium leading-relaxed">"{message}"</p>
-               <button className="mt-8 text-xs uppercase tracking-widest text-amber-700 border-b border-amber-700 pb-1">Karte schließen</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const About = () => {
-  return (
-    <section id="about" className="py-24 bg-slate-900 text-slate-300">
-      <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-        <div className="order-2 md:order-1 relative">
-           {/* Abstract Image Placeholder using CSS shapes */}
-           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
-             <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900/80 to-transparent z-10" />
-             <img 
-              src="/api/placeholder/600/800" 
-              alt="Albatros der Weise" 
-              className="w-full h-full object-cover opacity-80"
-             />
-             <div className="absolute bottom-0 left-0 right-0 p-8 z-20 bg-gradient-to-t from-slate-900 to-transparent">
-                <p className="text-amber-400 font-serif italic text-lg">"Wie der Albatros segle ich über den Dingen, um das große Ganze zu erkennen."</p>
-             </div>
-           </div>
-           {/* Decorative elements */}
-           <div className="absolute -z-10 -top-6 -left-6 w-full h-full border border-amber-500/20 rounded-2xl"></div>
-        </div>
-        
-        <div className="order-1 md:order-2">
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">Über Albatros den Weisen</h2>
-          <div className="space-y-4 text-lg leading-relaxed text-slate-400">
-            <p>
-              Seit über 20 Jahren widme ich mich den feinstofflichen Künsten. Mein Name "Albatros" ist kein Zufall – er symbolisiert die Fähigkeit, weite Strecken ohne Anstrengung zurückzulegen und die Welt aus einer höheren Perspektive zu betrachten.
-            </p>
-            <p>
-              Meine Gabe ist es, das Unsichtbare sichtbar zu machen. Egal ob du an einer Weggabelung stehst, Herzschmerz hast oder einfach wissen möchtest, was das Universum für dich bereithält – ich biete dir einen sicheren Raum voller Empathie und Wahrheit.
-            </p>
-            <p>
-              Ich arbeite ohne Urteil, aber mit radikaler Ehrlichkeit. Die Karten lügen nicht, und meine Visionen sind klar. Bist du bereit, hinzusehen?
-            </p>
-          </div>
-          <div className="mt-8 flex gap-4">
-             <div className="flex flex-col">
-                <span className="text-3xl font-bold text-amber-400">20+</span>
-                <span className="text-sm uppercase tracking-wider text-slate-500">Jahre Erfahrung</span>
-             </div>
-             <div className="w-[1px] bg-slate-700"></div>
-             <div className="flex flex-col">
-                <span className="text-3xl font-bold text-amber-400">2k+</span>
-                <span className="text-sm uppercase tracking-wider text-slate-500">Geholfene Seelen</span>
-             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Contact = () => {
-  return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-slate-900 to-indigo-950 text-white relative">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-slate-700 shadow-2xl">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-serif text-amber-100 mb-4">Verbinde dich mit mir</h2>
-            <p className="text-slate-400">Schreibe mir dein Anliegen oder vereinbare einen Termin.</p>
-          </div>
-
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-sm text-slate-400 uppercase tracking-wider">Dein Name</label>
-                <input type="text" className="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Wie darf ich dich nennen?" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm text-slate-400 uppercase tracking-wider">Deine E-Mail</label>
-                <input type="email" className="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="name@beispiel.de" />
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <label className="text-sm text-slate-400 uppercase tracking-wider">Thema</label>
-              <select className="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all">
-                <option>Allgemeine Anfrage</option>
-                <option>Tarot Legung (60 Min)</option>
-                <option>Partnerberatung / Liebesorakel</option>
-                <option>Remote Viewing Session</option>
-                <option>Spirituelle Begleitung</option>
-              </select>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm text-slate-400 uppercase tracking-wider">Deine Nachricht</label>
-              <textarea rows="4" className="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Was liegt dir auf dem Herzen?"></textarea>
-            </div>
-
-            <button type="button" className="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1">
-              Anfrage Absenden
-            </button>
-          </form>
-
-          <div className="mt-12 grid md:grid-cols-3 gap-6 text-center border-t border-slate-700 pt-8">
-            <div className="flex flex-col items-center gap-2 text-slate-400">
-               <Mail className="text-amber-500 mb-2" />
-               <span className="text-sm">kontakt@albatros-weise.de</span>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-slate-400">
-               <Phone className="text-amber-500 mb-2" />
-               <span className="text-sm">+49 123 456 789</span>
-            </div>
-             <div className="flex flex-col items-center gap-2 text-slate-400">
-               <MapPin className="text-amber-500 mb-2" />
-               <span className="text-sm">Online & Remote</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Footer = () => (
-  <footer className="bg-slate-950 py-8 text-center text-slate-600 text-sm border-t border-slate-900">
-    <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-      <div className="flex items-center gap-2">
-        <Feather className="w-4 h-4" />
-        <span className="font-serif text-slate-500">Albatros der Weise</span>
-      </div>
-      <div>
-        &copy; {new Date().getFullYear()} Spirituelle Beratung. Licht und Liebe.
-      </div>
-      <div className="flex gap-4">
-        <a href="#" className="hover:text-slate-400">Impressum</a>
-        <a href="#" className="hover:text-slate-400">Datenschutz</a>
-      </div>
-    </div>
-  </footer>
-);
-
-export default function App() {
-  return (
-    <div className="font-sans bg-slate-900 text-white min-h-screen selection:bg-amber-500/30 selection:text-amber-200">
-      <style>{`
+        /* Animations */
         @keyframes twinkle {
-          0%, 100% { opacity: 0.2; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 0.1; transform: scale(1); }
-          50% { opacity: 0.3; transform: scale(1.1); }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
         .animate-twinkle {
-          animation-name: twinkle;
-          animation-iteration-count: infinite;
+            animation: twinkle infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         .animate-float {
-          animation: float 6s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.1); }
         }
         .animate-pulse-slow {
-          animation: pulse-slow 8s ease-in-out infinite;
+            animation: pulse-slow 8s ease-in-out infinite;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         .animate-spin-slow {
-          animation: spin-slow 12s linear infinite;
+            animation: spin-slow 12s linear infinite;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeInUp {
-          animation: fadeInUp 1s ease-out forwards;
+            animation: fadeInUp 1s ease-out forwards;
         }
+        
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        .group:hover .animate-shimmer {
+            animation: shimmer 1.5s infinite;
+        }
+
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
+
+        /* 3D Flip Utilities */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* Service Card Expansion Logic */
+        .service-details {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+        .service-card.active .service-details {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+        .service-card.active {
+            background-color: rgba(30, 41, 59, 0.8); /* slate-800/80 */
+            border-color: rgba(245, 158, 11, 0.5); /* amber-500/50 */
+        }
+        .service-card.active .bg-glow {
+            opacity: 0.2 !important;
+        }
+        .expand-btn {
+            transition: all 0.3s;
+        }
+        .service-card.active .expand-btn {
+            display: none;
+        }
+        .close-btn {
+            display: none;
+        }
+        .service-card.active .close-btn {
+            display: block;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .faq-question {
+            cursor: pointer;
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust based on content */
+            padding-bottom: 1.5rem;
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Selection Colors */
+        ::selection {
+            background-color: rgba(245, 158, 11, 0.3);
+            color: #fde68a;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6" role="navigation" aria-label="Hauptnavigation">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-amber-200 font-serif text-xl md:text-2xl tracking-wider cursor-pointer">
+                <i data-lucide="feather" class="w-6 h-6 md:w-8 md:h-8 animate-float"></i>
+                <span>Albatros der Weise</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#about" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Über mich</a>
+                <a href="#services" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Angebote</a>
+                <a href="#offer" class="text-amber-400 font-bold border border-amber-500/50 px-4 py-2 rounded-full hover:bg-amber-500/10 transition-colors uppercase text-sm tracking-widest">Spezial-Angebot</a>
+                <a href="#oracle" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Orakel</a>
+                <a href="#contact" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Kontakt</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-amber-200" aria-label="Menü öffnen">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 p-4 flex flex-col gap-4 shadow-xl">
+            <a href="#about" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Über mich</a>
+            <a href="#services" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Angebote</a>
+            <a href="#offer" class="mobile-link text-amber-400 font-bold block py-2 text-center uppercase tracking-widest">Spezial-Angebot</a>
+            <a href="#oracle" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Orakel</a>
+            <a href="#contact" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Kontakt</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 z-0"></div>
+        <div id="stars-container" class="fixed inset-0 z-0 overflow-hidden pointer-events-none"></div>
         
-        .perspective-1000 {
-          perspective: 1000px;
+        <!-- Decorative Moon -->
+        <div class="absolute top-1/4 right-10 md:right-1/4 w-32 h-32 md:w-64 md:h-64 rounded-full bg-amber-100/5 blur-[60px] animate-pulse-slow pointer-events-none"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="mb-6 inline-block">
+                <span class="py-1 px-3 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-sm tracking-widest uppercase backdrop-blur-sm">
+                    Spiritueller Ratgeber
+                </span>
+            </div>
+            <!-- SEO Optimized H1 -->
+            <h1 class="text-5xl md:text-7xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 mb-6 drop-shadow-[0_0_15px_rgba(251,191,36,0.3)] animate-fadeInUp">
+                Spirituelle Beratung & Tarot<br><span class="text-3xl md:text-5xl block mt-2 opacity-90">Blicke hinter den Schleier</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto animate-fadeInUp delay-200">
+                Ich bin Albatros. Als erfahrener Berater für Lebenshilfe fliege ich hoch über den Stürmen des Lebens, um dir Klarheit, Weitsicht und spirituelle Führung zu schenken.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-300">
+                <a href="#offer" class="px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-full font-medium hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    Zum Spezial-Angebot <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </a>
+                <a href="#services" class="px-8 py-4 border border-slate-600 text-slate-300 rounded-full font-medium hover:bg-slate-800 hover:border-slate-500 transition-all">
+                    Meine Gaben entdecken
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
+            <span class="block w-[1px] h-16 bg-gradient-to-b from-transparent via-slate-500 to-transparent"></span>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900 text-slate-300 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 relative">
+                <!-- Abstract Image Placeholder with SEO ALT tag -->
+                <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-800 shadow-2xl">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-900/80 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1534067783865-9abd03095a12?q=80&w=1000&auto=format&fit=crop" loading="lazy" alt="Albatros der Weise - Spirituelle Lebensberatung und Kartenlegen Atmosphäre" class="w-full h-full object-cover opacity-80">
+                    <div class="absolute bottom-0 left-0 right-0 p-8 z-20 bg-gradient-to-t from-slate-900 to-transparent">
+                        <p class="text-amber-400 font-serif italic text-lg">"Wie der Albatros segle ich über den Dingen, um das große Ganze zu erkennen."</p>
+                    </div>
+                </div>
+                <!-- Decorative elements -->
+                <div class="absolute -z-10 -top-6 -left-6 w-full h-full border border-amber-500/20 rounded-2xl"></div>
+            </div>
+            
+            <div class="order-1 md:order-2">
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-6">Über Albatros den Weisen</h2>
+                <div class="space-y-4 text-lg leading-relaxed text-slate-400">
+                    <p>
+                        Seit über 20 Jahren widme ich mich den feinstofflichen Künsten und der <strong>spirituellen Lebensberatung</strong>. Mein Name "Albatros" ist kein Zufall – er symbolisiert die Fähigkeit, weite Strecken ohne Anstrengung zurückzulegen und die Welt aus einer höheren Perspektive zu betrachten.
+                    </p>
+                    <p>
+                        Meine Gabe im <strong>Remote Viewing</strong> und <strong>Tarot Kartenlegen</strong> ist es, das Unsichtbare sichtbar zu machen. Egal ob du an einer Weggabelung stehst, Herzschmerz hast oder einfach wissen möchtest, was das Universum für dich bereithält – ich biete dir einen sicheren Raum voller Empathie und Wahrheit.
+                    </p>
+                    <p>
+                        Ich arbeite ohne Urteil, aber mit radikaler Ehrlichkeit. Die Karten lügen nicht, und meine Visionen sind klar. Bist du bereit, hinzusehen?
+                    </p>
+                </div>
+                <div class="mt-8 flex gap-4">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-bold text-amber-400">20+</span>
+                        <span class="text-sm uppercase tracking-wider text-slate-500">Jahre Erfahrung</span>
+                    </div>
+                    <div class="w-[1px] bg-slate-700"></div>
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-bold text-amber-400">2k+</span>
+                        <span class="text-sm uppercase tracking-wider text-slate-500">Geholfene Seelen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-slate-900 relative z-10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-serif text-amber-100 mb-4">Meine Spirituellen Dienste</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400">Klicke auf eine Karte, um mehr Details zu meinen Methoden zu erfahren.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+                <!-- Service 1: Tarot -->
+                <div class="service-card group relative p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm transition-all duration-500 overflow-hidden hover:bg-slate-800/60 hover:-translate-y-2 cursor-pointer">
+                    <div class="bg-glow absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity bg-purple-500"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start">
+                            <div class="w-14 h-14 rounded-xl bg-slate-900/80 flex items-center justify-center mb-6 border border-slate-700 group-hover:border-amber-500/50 transition-colors shadow-lg">
+                                <i data-lucide="moon" class="w-7 h-7 text-amber-200"></i>
+                            </div>
+                            <button class="close-btn text-slate-500 hover:text-amber-400 transition-colors" aria-label="Schließen">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        
+                        <h3 class="text-2xl font-serif text-slate-100 mb-3 group-hover:text-amber-200 transition-colors">Tarot & Kartenlegen</h3>
+                        <p class="text-slate-400 leading-relaxed mb-4">Die Karten spiegeln deine Seele. Ich deute die Symbole des Rider-Waite Tarot nach der bewährten Methode von Hajo Banzhaf, um Vergangenes zu verstehen und Zukünftiges zu gestalten.</p>
+                        
+                        <div class="service-details">
+                            <div class="overflow-hidden">
+                                <div class="pt-4 border-t border-slate-700/50">
+                                    <h4 class="text-amber-400 font-serif mb-3 text-sm uppercase tracking-widest">Leistungsumfang</h4>
+                                    <ul class="space-y-3 mb-6">
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Beziehungsspiel: Was denkt und fühlt dein Partner wirklich?</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Das Entscheidungsspiel: Klarheit bei wichtigen Fragen.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Der blinde Fleck: Unbewusste Muster erkennen.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Jahreskreis: Ausblick auf die nächsten 12 Monate.</li>
+                                    </ul>
+                                    <a href="#offer" class="inline-block text-xs font-bold text-amber-500 hover:text-amber-300 border-b border-amber-500/30 pb-0.5 transition-colors uppercase tracking-wider">Jetzt anfragen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="expand-btn mt-4 pt-4 border-t border-slate-700/50 w-full flex items-center text-amber-400 text-sm font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transform transition-all duration-300">
+                        Details ansehen <i data-lucide="chevron-down" class="ml-2 w-4 h-4 animate-bounce"></i>
+                    </button>
+                </div>
+
+                <!-- Service 2: Remote Viewing -->
+                <div class="service-card group relative p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm transition-all duration-500 overflow-hidden hover:bg-slate-800/60 hover:-translate-y-2 cursor-pointer">
+                    <div class="bg-glow absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity bg-blue-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start">
+                            <div class="w-14 h-14 rounded-xl bg-slate-900/80 flex items-center justify-center mb-6 border border-slate-700 group-hover:border-amber-500/50 transition-colors shadow-lg">
+                                <i data-lucide="eye" class="w-7 h-7 text-amber-200"></i>
+                            </div>
+                            <button class="close-btn text-slate-500 hover:text-amber-400 transition-colors" aria-label="Schließen">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        <h3 class="text-2xl font-serif text-slate-100 mb-3 group-hover:text-amber-200 transition-colors">Remote Viewing</h3>
+                        <p class="text-slate-400 leading-relaxed mb-4">Hellsichtige Wahrnehmung über Raum und Zeit. Ich helfe dir, verborgene Informationen zu finden und Situationen aus einer höheren Perspektive zu betrachten.</p>
+                        <div class="service-details">
+                            <div class="overflow-hidden">
+                                <div class="pt-4 border-t border-slate-700/50">
+                                    <h4 class="text-amber-400 font-serif mb-3 text-sm uppercase tracking-widest">Leistungsumfang</h4>
+                                    <ul class="space-y-3 mb-6">
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Coordinate Remote Viewing (CRV): Protokollierte Fernwahrnehmung.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Lost Objects: Energetische Ortung verlorener Gegenstände.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Standort-Analyse: Bewertung von Immobilien/Geschäftsorten.</li>
+                                    </ul>
+                                    <a href="#offer" class="inline-block text-xs font-bold text-amber-500 hover:text-amber-300 border-b border-amber-500/30 pb-0.5 transition-colors uppercase tracking-wider">Jetzt anfragen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="expand-btn mt-4 pt-4 border-t border-slate-700/50 w-full flex items-center text-amber-400 text-sm font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transform transition-all duration-300">
+                        Details ansehen <i data-lucide="chevron-down" class="ml-2 w-4 h-4 animate-bounce"></i>
+                    </button>
+                </div>
+
+                <!-- Service 3: Partnerberatung -->
+                <div class="service-card group relative p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm transition-all duration-500 overflow-hidden hover:bg-slate-800/60 hover:-translate-y-2 cursor-pointer">
+                    <div class="bg-glow absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity bg-pink-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start">
+                            <div class="w-14 h-14 rounded-xl bg-slate-900/80 flex items-center justify-center mb-6 border border-slate-700 group-hover:border-amber-500/50 transition-colors shadow-lg">
+                                <i data-lucide="heart" class="w-7 h-7 text-amber-200"></i>
+                            </div>
+                            <button class="close-btn text-slate-500 hover:text-amber-400 transition-colors" aria-label="Schließen">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        <h3 class="text-2xl font-serif text-slate-100 mb-3 group-hover:text-amber-200 transition-colors">Liebesorakel & Partnerberatung</h3>
+                        <p class="text-slate-400 leading-relaxed mb-4">Seelenpartner oder karmische Lernaufgabe? Wir blicken tief in die energetischen Verbindungen zwischen dir und deinem Herzensmenschen.</p>
+                        <div class="service-details">
+                            <div class="overflow-hidden">
+                                <div class="pt-4 border-t border-slate-700/50">
+                                    <h4 class="text-amber-400 font-serif mb-3 text-sm uppercase tracking-widest">Leistungsumfang</h4>
+                                    <ul class="space-y-3 mb-6">
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Dualseelen-Check: Karmisch oder Seelenliebe?</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Herz-Magnetismus: Blockaden lösen.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Trennungsbegleitung: Loslassen und Heilen.</li>
+                                    </ul>
+                                    <a href="#offer" class="inline-block text-xs font-bold text-amber-500 hover:text-amber-300 border-b border-amber-500/30 pb-0.5 transition-colors uppercase tracking-wider">Jetzt anfragen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="expand-btn mt-4 pt-4 border-t border-slate-700/50 w-full flex items-center text-amber-400 text-sm font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transform transition-all duration-300">
+                        Details ansehen <i data-lucide="chevron-down" class="ml-2 w-4 h-4 animate-bounce"></i>
+                    </button>
+                </div>
+
+                <!-- Service 4: Spirituelle Begleitung -->
+                <div class="service-card group relative p-8 rounded-2xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm transition-all duration-500 overflow-hidden hover:bg-slate-800/60 hover:-translate-y-2 cursor-pointer">
+                    <div class="bg-glow absolute -right-10 -top-10 w-32 h-32 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity bg-amber-500"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start">
+                            <div class="w-14 h-14 rounded-xl bg-slate-900/80 flex items-center justify-center mb-6 border border-slate-700 group-hover:border-amber-500/50 transition-colors shadow-lg">
+                                <i data-lucide="sun" class="w-7 h-7 text-amber-200"></i>
+                            </div>
+                            <button class="close-btn text-slate-500 hover:text-amber-400 transition-colors" aria-label="Schließen">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        <h3 class="text-2xl font-serif text-slate-100 mb-3 group-hover:text-amber-200 transition-colors">Spirituelle Begleitung</h3>
+                        <p class="text-slate-400 leading-relaxed mb-4">In dunklen Lebensphasen bin ich dein Lichtträger. Gemeinsam aktivieren wir deine Selbstheilungskräfte und finden deinen Seelenpfad wieder.</p>
+                        <div class="service-details">
+                            <div class="overflow-hidden">
+                                <div class="pt-4 border-t border-slate-700/50">
+                                    <h4 class="text-amber-400 font-serif mb-3 text-sm uppercase tracking-widest">Leistungsumfang</h4>
+                                    <ul class="space-y-3 mb-6">
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Schattenarbeit: Integration verdrängter Anteile.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Chakra-Harmonisierung: Energieausgleich.</li>
+                                        <li class="flex items-start gap-3 text-slate-300 text-sm leading-relaxed"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>Traumdeutung: Botschaften des Unterbewusstseins.</li>
+                                    </ul>
+                                    <a href="#offer" class="inline-block text-xs font-bold text-amber-500 hover:text-amber-300 border-b border-amber-500/30 pb-0.5 transition-colors uppercase tracking-wider">Jetzt anfragen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="expand-btn mt-4 pt-4 border-t border-slate-700/50 w-full flex items-center text-amber-400 text-sm font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transform transition-all duration-300">
+                        Details ansehen <i data-lucide="chevron-down" class="ml-2 w-4 h-4 animate-bounce"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Section -->
+    <section id="offer" class="py-24 relative overflow-hidden z-10">
+        <!-- Background gradients -->
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        
+        <!-- Glowing orb effect -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="bg-slate-900/60 backdrop-blur-xl border border-amber-500/30 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(245,158,11,0.15)] flex flex-col md:flex-row">
+                
+                <!-- Left Side: The Offer Info -->
+                <div class="p-8 md:p-12 md:w-5/12 bg-gradient-to-br from-slate-900 to-indigo-950 flex flex-col justify-center relative border-b md:border-b-0 md:border-r border-slate-700">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400"></div>
+                    
+                    <div class="inline-flex items-center gap-2 text-amber-400 text-sm font-bold uppercase tracking-widest mb-4">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        <span>Limitiertes Angebot</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight">
+                        Deine Frage.<br/>
+                        <span class="text-amber-200">Die Antwort der Karten.</span>
+                    </h2>
+                    
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Stelle mir jetzt deine brennendste Frage. Ich verbinde mich mit deinem Energiefeld und lege eine ausführliche 3-Karten-Legung für dich. Antwort innerhalb von 24 Stunden per E-Mail.
+                    </p>
+
+                    <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50 mb-6">
+                        <div class="flex items-end gap-3 mb-2">
+                            <span class="text-slate-500 text-lg line-through decoration-red-500 decoration-2">60,00 €</span>
+                            <span class="text-4xl font-bold text-amber-400">20,00 €</span>
+                        </div>
+                        <p class="text-xs text-amber-200/70 uppercase tracking-wide">Einführungsangebot</p>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> 100% Diskret & Persönlich
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Foto der Legung inklusive
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Sichere Bezahlung
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Side: Order Form -->
+                <div class="p-8 md:p-12 md:w-7/12 bg-slate-900/40">
+                    <form class="space-y-5" onsubmit="event.preventDefault(); alert('Vielen Dank! Sie würden jetzt zur Zahlungsseite weitergeleitet.');">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="space-y-2">
+                                <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Dein Vorname</label>
+                                <input type="text" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="z.B. Maria" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Geburtsdatum</label>
+                                <input type="text" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="TT.MM.JJJJ">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Deine E-Mail Adresse</label>
+                            <input type="email" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="Für den Erhalt der Deutung" required>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Deine Frage an die Karten</label>
+                            <textarea rows="4" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600" placeholder="Was möchtest du wissen? Konzentriere dich auf deine Frage..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full group relative overflow-hidden bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all transform hover:-translate-y-1">
+                            <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer"></div>
+                            <span class="flex items-center justify-center gap-2">
+                                Jetzt Legung bestellen (20€) <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </span>
+                        </button>
+                        <p class="text-xs text-center text-slate-500 mt-4">
+                            Mit dem Klick auf den Button wirst du zur sicheren Zahlungsseite weitergeleitet.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Oracle Section -->
+    <section id="oracle" class="py-24 relative overflow-hidden bg-slate-900 z-10">
+        <div class="absolute inset-0 bg-indigo-950/30 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-3xl md:text-4xl font-serif text-white mb-2">Das Orakel des Albatros</h2>
+            <p class="text-slate-300 mb-10">Ziehe eine Karte für deine heutige Botschaft.</p>
+
+            <div class="flex justify-center perspective-1000">
+                <div id="oracle-card" class="cursor-pointer w-64 h-96 relative transition-all duration-700 transform-style-3d hover:scale-105">
+                    <!-- Card Back -->
+                    <div class="absolute inset-0 backface-hidden rounded-2xl shadow-[0_0_30px_rgba(124,58,237,0.3)] border-2 border-indigo-400/30 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-2 border border-indigo-400/20 rounded-xl flex items-center justify-center">
+                            <div class="w-24 h-24 rounded-full border border-amber-500/30 flex items-center justify-center animate-spin-slow">
+                                <i data-lucide="star" class="text-amber-200 w-12 h-12"></i>
+                            </div>
+                        </div>
+                        <span class="text-amber-100 font-serif tracking-widest text-sm absolute bottom-8">TIPPEN ZUM ZIEHEN</span>
+                    </div>
+
+                    <!-- Card Front -->
+                    <div class="absolute inset-0 backface-hidden rounded-2xl shadow-[0_0_40px_rgba(251,191,36,0.2)] bg-gradient-to-br from-amber-100 to-orange-50 flex flex-col items-center justify-center p-6 text-center rotate-y-180">
+                        <i data-lucide="feather" class="w-12 h-12 text-amber-600 mb-4"></i>
+                        <h3 class="text-amber-900 font-serif text-xl font-bold mb-4">Botschaft der Weisheit</h3>
+                        <p id="oracle-message" class="text-slate-700 italic font-medium leading-relaxed">"Das, was du suchst, sucht auch dich."</p>
+                        <button class="mt-8 text-xs uppercase tracking-widest text-amber-700 border-b border-amber-700 pb-1">Karte schließen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: FAQ Section for SEO and User Trust -->
+    <section id="faq" class="py-24 bg-slate-900 relative z-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-serif text-amber-100 mb-4">Häufige Fragen (FAQ)</h2>
+                <p class="text-slate-400">Antworten rund um Tarot, spirituelle Beratung und Lebenshilfe.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="faq-item bg-slate-800/40 rounded-xl px-6 border border-slate-700/50">
+                    <div class="faq-question text-slate-200 font-medium">
+                        <span>Wie funktioniert eine Tarot-Beratung online?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-amber-400"></i>
+                    </div>
+                    <div class="faq-answer text-slate-400 leading-relaxed">
+                        <p>Bei einer Online-Beratung verbinde ich mich energetisch mit deinem Feld, genau wie in einer persönlichen Sitzung. Ich ziehe die Karten für dich und sende dir die Ergebnisse, inklusive Foto der Legung und detaillierter Sprach- oder Textnachricht, digital zu.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-slate-800/40 rounded-xl px-6 border border-slate-700/50">
+                    <div class="faq-question text-slate-200 font-medium">
+                        <span>Was ist der Unterschied zwischen Lebenshilfe und Therapie?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-amber-400"></i>
+                    </div>
+                    <div class="faq-answer text-slate-400 leading-relaxed">
+                        <p>Meine spirituelle Lebenshilfe konzentriert sich auf energetische Blockaden, Seelenpläne und Zukunfts-Potenziale. Sie ersetzt keine medizinische oder psychotherapeutische Behandlung, sondern ergänzt sie durch eine spirituelle Perspektive auf deine Lebenssituation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-slate-800/40 rounded-xl px-6 border border-slate-700/50">
+                    <div class="faq-question text-slate-200 font-medium">
+                        <span>Kannst du mir die Zukunft vorhersagen?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-amber-400"></i>
+                    </div>
+                    <div class="faq-answer text-slate-400 leading-relaxed">
+                        <p>Tarot und Wahrsagen zeigen Tendenzen und Wahrscheinlichkeiten basierend auf deiner aktuellen Energie. Die Zukunft ist nicht in Stein gemeißelt – die Karten geben dir Hinweise, wie du deine Zukunft aktiv und positiv gestalten kannst.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-slate-900 to-indigo-950 text-white relative z-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-slate-700 shadow-2xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-serif text-amber-100 mb-4">Verbinde dich mit mir</h2>
+                    <p class="text-slate-400">Schreibe mir dein Anliegen oder vereinbare einen Termin für deine spirituelle Beratung.</p>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm text-slate-400 uppercase tracking-wider">Dein Name</label>
+                            <input type="text" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Wie darf ich dich nennen?">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm text-slate-400 uppercase tracking-wider">Deine E-Mail</label>
+                            <input type="email" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="name@beispiel.de">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-sm text-slate-400 uppercase tracking-wider">Thema</label>
+                        <select class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all">
+                            <option>Allgemeine Anfrage</option>
+                            <option>Tarot Legung (60 Min)</option>
+                            <option>Partnerberatung / Liebesorakel</option>
+                            <option>Remote Viewing Session</option>
+                            <option>Spirituelle Begleitung</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm text-slate-400 uppercase tracking-wider">Deine Nachricht</label>
+                        <textarea rows="4" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Was liegt dir auf dem Herzen?"></textarea>
+                    </div>
+
+                    <button type="button" class="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1">
+                        Anfrage Absenden
+                    </button>
+                </form>
+
+                <div class="mt-12 grid md:grid-cols-3 gap-6 text-center border-t border-slate-700 pt-8">
+                    <div class="flex flex-col items-center gap-2 text-slate-400">
+                        <i data-lucide="mail" class="text-amber-500 mb-2 w-6 h-6"></i>
+                        <span class="text-sm">kontakt@albatros-weise.de</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 text-slate-400">
+                        <i data-lucide="phone" class="text-amber-500 mb-2 w-6 h-6"></i>
+                        <span class="text-sm">+49 123 456 789</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 text-slate-400">
+                        <i data-lucide="map-pin" class="text-amber-500 mb-2 w-6 h-6"></i>
+                        <span class="text-sm">Online & Remote</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-8 text-center text-slate-600 text-sm border-t border-slate-900 z-10 relative">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i data-lucide="feather" class="w-4 h-4"></i>
+                <span class="font-serif text-slate-500">Albatros der Weise</span>
+            </div>
+            <div>
+                &copy; <span id="year"></span> Spirituelle Beratung. Licht und Liebe.
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-slate-400">Impressum</a>
+                <a href="#" class="hover:text-slate-400">Datenschutz</a>
+                <a href="#" class="hover:text-slate-400">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Update Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Starry Background Logic
+        const starContainer = document.getElementById('stars-container');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'absolute bg-white rounded-full opacity-70 animate-twinkle';
+            const size = Math.random() * 3 + 1 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starContainer.appendChild(star);
         }
-        .transform-style-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-      `}</style>
-      
-      <Navigation />
-      <Hero />
-      <About />
-      <Services />
-      <SpecialOffer />
-      <DailyOracle />
-      <Contact />
-      <Footer />
-    </div>
-  );
-}
+
+        // Navigation Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                navbar.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons(); // Re-render icon
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Services Expand Logic
+        const cards = document.querySelectorAll('.service-card');
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // If clicking the close button or if the card is already active and we clicked the expand button area
+                if (e.target.closest('.close-btn')) {
+                    e.stopPropagation();
+                    card.classList.remove('active');
+                    return;
+                }
+
+                // Close other cards
+                cards.forEach(c => {
+                    if (c !== card) c.classList.remove('active');
+                });
+
+                // Toggle this card
+                if (!card.classList.contains('active')) {
+                    card.classList.add('active');
+                }
+            });
+        });
+
+        // FAQ Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Toggle active class on clicked item
+                item.classList.toggle('active');
+                
+                // Optional: Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+            });
+        });
+
+        // Daily Oracle Logic
+        const oracleCard = document.getElementById('oracle-card');
+        const oracleMessage = document.getElementById('oracle-message');
+        let isRevealed = false;
+        
+        const wisdoms = [
+            "Das, was du suchst, sucht auch dich. Sei geduldig.",
+            "Ein alter Zyklus endet heute. Öffne dich für das Neue.",
+            "Vertraue deiner Intuition mehr als deinen Ängsten.",
+            "Die Antwort liegt nicht im Außen, sondern in der Stille.",
+            "Jemand denkt liebevoll an dich. Sende diese Energie zurück.",
+            "Ein Hindernis ist nur eine Umleitung zu deinem wahren Ziel."
+        ];
+
+        oracleCard.addEventListener('click', () => {
+            if (!isRevealed) {
+                const randomMsg = wisdoms[Math.floor(Math.random() * wisdoms.length)];
+                oracleMessage.textContent = `"${randomMsg}"`;
+                oracleCard.classList.add('rotate-y-180');
+                isRevealed = true;
+            } else {
+                oracleCard.classList.remove('rotate-y-180');
+                isRevealed = false;
+                // Wait for animation to finish before clearing message (optional)
+                setTimeout(() => {
+                    oracleMessage.textContent = "";
+                }, 500);
+            }
+        });
+
+    </script>
+</body>
+</html>
