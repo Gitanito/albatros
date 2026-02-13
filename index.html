@@ -10,7 +10,7 @@
     <meta name="keywords" content="Tarot, Kartenlegen, Spirituelle Beratung, Lebenshilfe, Remote Viewing, Liebesorakel, Wahrsagen, Hajo Banzhaf, Zukunftsdeutung, Online Beratung">
     <meta name="author" content="Albatros der Weise">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.albatros-weise.de/"> <!-- Placeholder URL -->
+    <link rel="canonical" href="https://www.albatros-weise.de/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <meta property="twitter:description" content="Blicke hinter den Schleier. Professionelle Tarot-Legungen und Lebenshilfe.">
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1534067783865-9abd03095a12?q=80&w=1000&auto=format&fit=crop">
 
-    <!-- Structured Data (JSON-LD) for Local Business/Service -->
+    <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -48,33 +48,6 @@
         "priceCurrency": "EUR",
         "name": "Einführungsangebot Tarot Legung",
         "availability": "https://schema.org/InStock"
-      },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Spirituelle Dienstleistungen",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Tarot & Kartenlegen"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Remote Viewing"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Spirituelle Lebenshilfe"
-            }
-          }
-        ]
       }
     }
     </script>
@@ -235,6 +208,8 @@
             <div class="hidden md:flex gap-8 items-center">
                 <a href="#about" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Über mich</a>
                 <a href="#services" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Angebote</a>
+                <!-- NEW: Link to Freebies -->
+                <a href="ressourcen.html" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Freebies</a>
                 <a href="#offer" class="text-amber-400 font-bold border border-amber-500/50 px-4 py-2 rounded-full hover:bg-amber-500/10 transition-colors uppercase text-sm tracking-widest">Spezial-Angebot</a>
                 <a href="#oracle" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Orakel</a>
                 <a href="#contact" class="text-slate-300 hover:text-amber-300 transition-colors uppercase text-sm tracking-widest">Kontakt</a>
@@ -250,6 +225,7 @@
         <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 p-4 flex flex-col gap-4 shadow-xl">
             <a href="#about" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Über mich</a>
             <a href="#services" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Angebote</a>
+            <a href="ressourcen.html" class="text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Freebies</a>
             <a href="#offer" class="mobile-link text-amber-400 font-bold block py-2 text-center uppercase tracking-widest">Spezial-Angebot</a>
             <a href="#oracle" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Orakel</a>
             <a href="#contact" class="mobile-link text-slate-300 hover:text-amber-300 block py-2 text-center uppercase tracking-widest">Kontakt</a>
@@ -487,6 +463,44 @@
         </div>
     </section>
 
+    <!-- NEW: Free Resources Teaser Section -->
+    <section class="py-24 relative overflow-hidden bg-slate-900 border-t border-slate-800">
+        <!-- Background with distinct gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-2 text-amber-400 text-sm font-bold uppercase tracking-widest mb-4">
+                    <i data-lucide="headphones" class="w-4 h-4"></i>
+                    <span>Kostenlos für dich</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-serif text-white mb-6">
+                    Meditationen &<br>
+                    <span class="text-amber-200">Seelen-Impulse</span>
+                </h2>
+                <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                    Manchmal brauchen wir nur einen Moment der Stille, um uns wieder zu finden. In meiner Mediathek stelle ich dir geführte Reisen und Audio-Botschaften kostenfrei zur Verfügung.
+                </p>
+                <a href="ressourcen.html" class="inline-flex items-center gap-2 text-white border-b border-amber-500 pb-1 hover:text-amber-400 hover:border-amber-400 transition-colors uppercase tracking-widest text-sm">
+                    Zur Mediathek gehen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            
+            <!-- Decorative Visual -->
+            <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden group cursor-pointer" onclick="window.location.href='ressourcen.html'">
+                <img src="Abschalten -Miniaturansicht.jpg" alt="Meditation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors"></div>
+                
+                <!-- Play Button Illusion -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-amber-500/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.4)] group-hover:scale-110 transition-transform">
+                        <i data-lucide="play" class="w-6 h-6 text-white fill-current ml-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Special Offer Section -->
     <section id="offer" class="py-24 relative overflow-hidden z-10">
         <!-- Background gradients -->
@@ -540,7 +554,7 @@
 
                 <!-- Right Side: Order Form -->
                 <div class="p-8 md:p-12 md:w-7/12 bg-slate-900/40">
-                    <form class="space-y-5" onsubmit="event.preventDefault(); alert('Vielen Dank! Sie würden jetzt zur Zahlungsseite weitergeleitet.');">
+                    <form class="space-y-5" onsubmit="event.preventDefault(); window.location.href='danke.html';">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="space-y-2">
                                 <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Dein Vorname</label>
@@ -610,7 +624,7 @@
         </div>
     </section>
 
-    <!-- NEW: FAQ Section for SEO and User Trust -->
+    <!-- FAQ Section -->
     <section id="faq" class="py-24 bg-slate-900 relative z-10">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-16">
@@ -661,15 +675,15 @@
                     <p class="text-slate-400">Schreibe mir dein Anliegen oder vereinbare einen Termin für deine spirituelle Beratung.</p>
                 </div>
 
-                <form class="space-y-6">
+                <form class="space-y-6" onsubmit="event.preventDefault(); window.location.href='danke.html';">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
                             <label class="text-sm text-slate-400 uppercase tracking-wider">Dein Name</label>
-                            <input type="text" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Wie darf ich dich nennen?">
+                            <input type="text" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Wie darf ich dich nennen?" required>
                         </div>
                         <div class="space-y-2">
                             <label class="text-sm text-slate-400 uppercase tracking-wider">Deine E-Mail</label>
-                            <input type="email" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="name@beispiel.de">
+                            <input type="email" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="name@beispiel.de" required>
                         </div>
                     </div>
                     
@@ -686,10 +700,10 @@
 
                     <div class="space-y-2">
                         <label class="text-sm text-slate-400 uppercase tracking-wider">Deine Nachricht</label>
-                        <textarea rows="4" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Was liegt dir auf dem Herzen?"></textarea>
+                        <textarea rows="4" class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all" placeholder="Was liegt dir auf dem Herzen?" required></textarea>
                     </div>
 
-                    <button type="button" class="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1">
+                    <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1">
                         Anfrage Absenden
                     </button>
                 </form>
