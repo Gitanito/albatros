@@ -51,9 +51,10 @@
       "url": "https://www.albatros-frei.com",
       "offers": {
         "@type": "Offer",
-        "price": "20.00",
+        "price": "21.41",
         "priceCurrency": "EUR",
         "name": "Einführungsangebot Tarot Legung",
+        "url": "https://www.etsy.com/at/listing/4459345367/your-question-the-tarot-answers",
         "availability": "https://schema.org/InStock"
       }
     }
@@ -759,7 +760,7 @@
                         <div class="flex items-end gap-3 mb-2">
                             <span class="text-slate-500 text-lg line-through decoration-red-500 decoration-2">60,00
                                 €</span>
-                            <span class="text-4xl font-bold text-amber-400">20,00 €</span>
+                            <span class="text-4xl font-bold text-amber-400">21,41 €</span>
                         </div>
                         <p class="text-xs text-amber-200/70 uppercase tracking-wide">Einführungsangebot</p>
                     </div>
@@ -778,55 +779,31 @@
                 </div>
 
                 <!-- Right Side: Order Form -->
-                <div class="p-8 md:p-12 md:w-7/12 bg-slate-900/40">
-                    <form class="space-y-5" onsubmit="event.preventDefault(); window.location.href='danke.html';">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div class="space-y-2">
-                                <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Dein
-                                    Vorname</label>
-                                <input type="text"
-                                    class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600"
-                                    placeholder="z.B. Maria" required>
-                            </div>
-                            <div class="space-y-2">
-                                <label
-                                    class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Geburtsdatum</label>
-                                <input type="text"
-                                    class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600"
-                                    placeholder="TT.MM.JJJJ">
-                            </div>
-                        </div>
+                <div
+                    class="p-8 md:p-12 md:w-7/12 bg-slate-900/40 flex flex-col justify-center items-center text-center">
+                    <div
+                        class="w-20 h-20 bg-amber-500/10 rounded-full flex items-center justify-center mb-6 border border-amber-500/30">
+                        <i data-lucide="shopping-bag" class="w-10 h-10 text-amber-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif text-white mb-4">Sicher über Etsy bestellen</h3>
+                    <p class="text-slate-400 mb-8 leading-relaxed max-w-sm">
+                        Für eine einfache und sichere Abwicklung kannst du deine Legung direkt über meinen Etsy-Shop
+                        buchen. Du musst hier keine persönlichen Daten hinterlassen.
+                    </p>
 
-                        <div class="space-y-2">
-                            <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Deine E-Mail
-                                Adresse</label>
-                            <input type="email"
-                                class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600"
-                                placeholder="Für den Erhalt der Deutung" required>
+                    <a href="https://www.etsy.com/at/listing/4459345367/your-question-the-tarot-answers" target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-full group relative overflow-hidden bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-5 rounded-lg shadow-lg hover:shadow-amber-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                        <div
+                            class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer">
                         </div>
+                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                        <span>Jetzt auf Etsy ansehen</span>
+                    </a>
 
-                        <div class="space-y-2">
-                            <label class="text-xs text-slate-400 uppercase font-bold tracking-wider ml-1">Deine Frage an
-                                die Karten</label>
-                            <textarea rows="4"
-                                class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all placeholder:text-slate-600"
-                                placeholder="Was möchtest du wissen? Konzentriere dich auf deine Frage..."
-                                required></textarea>
-                        </div>
-
-                        <button type="submit"
-                            class="w-full group relative overflow-hidden bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all transform hover:-translate-y-1">
-                            <div
-                                class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer">
-                            </div>
-                            <span class="flex items-center justify-center gap-2">
-                                Jetzt Legung bestellen (20€) <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                            </span>
-                        </button>
-                        <p class="text-xs text-center text-slate-500 mt-4">
-                            Mit dem Klick auf den Button wirst du zur sicheren Zahlungsseite weitergeleitet.
-                        </p>
-                    </form>
+                    <p class="text-xs text-slate-500 mt-6 flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i> Käuferschutz durch Etsy garantiert
+                    </p>
                 </div>
             </div>
         </div>
