@@ -621,6 +621,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="cookie-consent.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -1397,12 +1400,39 @@
             document.body.removeChild(link);
         }
 
-        leadForm.onsubmit = (e) => {
+        leadForm.onsubmit = async (e) => {
             e.preventDefault();
             const email = document.getElementById('subscriber-email').value;
+            const submitBtn = leadForm.querySelector('button[type="submit"]');
+
             if (email) {
+                // UI State
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Wird gespeichert...';
+
                 localStorage.setItem('albatros_subscriber_email', email);
+
+                // Optional: Send to PHP handler as well
+                try {
+                    await fetch('mail-handler.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: 'Newsletter Lead',
+                            email: email,
+                            subject: 'Neuer Newsletter-Abonnent (Download-Seite)',
+                            message: 'Ein Nutzer hat sich über den Download-Lead-Modal für den Newsletter angemeldet.'
+                        })
+                    });
+                } catch (err) {
+                    console.error('Lead sync failed:', err);
+                }
+
                 const idToDownload = pendingDownloadId;
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+
                 closeLeadModal();
                 if (idToDownload) startDownload(idToDownload);
             }
@@ -1436,6 +1466,9 @@
             starContainer.appendChild(star);
         }
     </script>
+
+    <!-- Cookie Consent JS -->
+    <script src="cookie-consent.js"></script>
 </body>
 
 </html>

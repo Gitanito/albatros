@@ -64,6 +64,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" href="cookie-consent.css">
+
     <style>
         /* Custom Fonts & Animations */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
@@ -930,17 +933,17 @@
                         spirituelle Beratung.</p>
                 </div>
 
-                <form class="space-y-6" onsubmit="event.preventDefault(); window.location.href='danke.html';">
+                <form id="contact-form" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-2">
                             <label class="text-sm text-slate-400 uppercase tracking-wider">Dein Name</label>
-                            <input type="text"
+                            <input type="text" name="name"
                                 class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all"
                                 placeholder="Wie darf ich dich nennen?" required>
                         </div>
                         <div class="space-y-2">
                             <label class="text-sm text-slate-400 uppercase tracking-wider">Deine E-Mail</label>
-                            <input type="email"
+                            <input type="email" name="email"
                                 class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all"
                                 placeholder="name@beispiel.de" required>
                         </div>
@@ -948,7 +951,7 @@
 
                     <div class="space-y-2">
                         <label class="text-sm text-slate-400 uppercase tracking-wider">Thema</label>
-                        <select
+                        <select name="subject"
                             class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all">
                             <option>Allgemeine Anfrage</option>
                             <option>Tarot Legung (60 Min)</option>
@@ -960,13 +963,15 @@
 
                     <div class="space-y-2">
                         <label class="text-sm text-slate-400 uppercase tracking-wider">Deine Nachricht</label>
-                        <textarea rows="4"
+                        <textarea name="message" rows="4"
                             class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-3 text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition-all"
                             placeholder="Was liegt dir auf dem Herzen?" required></textarea>
                     </div>
 
-                    <button type="submit"
-                        class="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1">
+                    <div id="form-message" class="hidden p-4 rounded-lg text-sm font-medium"></div>
+
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold py-4 rounded-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed">
                         Anfrage Absenden
                     </button>
                 </form>
@@ -1138,7 +1143,61 @@
             }
         });
 
+        // Contact Form Handling
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formMessage = document.getElementById('form-message');
+
+        // IMPORTANT: Change this URL to the actual location of your PHP file
+        const PHP_HANDLER_URL = 'mail-handler.php';
+
+        contactForm.onsubmit = async (e) => {
+            e.preventDefault();
+
+            // UI State
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Wird gesendet...';
+            formMessage.className = 'hidden p-4 rounded-lg text-sm font-medium';
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(PHP_HANDLER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Success
+                    window.location.href = 'danke.html';
+                } else {
+                    // Error from server
+                    formMessage.textContent = result.message || 'Ein Fehler ist aufgetreten.';
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.add('bg-red-500/20', 'text-red-400', 'border', 'border-red-500/50');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Anfrage Absenden';
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                formMessage.textContent = 'Verbindung zum Server fehlgeschlagen.';
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('bg-red-500/20', 'text-red-400', 'border', 'border-red-500/50');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Anfrage Absenden';
+            }
+        };
+
     </script>
+
+    <!-- Cookie Consent JS -->
+    <script src="cookie-consent.js"></script>
 </body>
 
 </html>
